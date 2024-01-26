@@ -1,0 +1,37 @@
+@import url("../../styles/helpers.css");
+
+.collapsible{
+    background-color: white;
+    border-radius: 0px;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+}
+
+.panelstyle{
+    font-size: 16px;
+}
+.collapse-box-cover{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.collapse-box{
+    width: 33%;
+    padding: 15px;
+}
+.collapse-box-child{
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.042);
+    padding: 15px 10px;
+}
+.collapse-box-child p{
+    font-size: 18px;
+    text-transform: capitalize;
+    letter-spacing: 1px;
+    margin: 5px 0;
+}
+.collapse-box h2{
+    font-size: 20px;
+}
