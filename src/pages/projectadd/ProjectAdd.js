@@ -1,9 +1,17 @@
 import "./projectadd.css"
 import {Form, Button, Input, DatePicker, message, Select} from "antd";
+import { useState } from "react";
 import Paths from "../../navigation/constant";
 import { useNavigate } from "react-router-dom";
+import { Province } from "../../assets/statelga";
 const ProjectAdd = () => {
+
     const navigate = useNavigate();
+    const states = Province.getStates();
+    const [lgas,setLgas] = useState([]);
+    const onStateInputChange = (key)=>{
+        setLgas(Province.getLocalGovtByName(key));
+    }
     const onFinish =()=>{
         message.success("Project Added");
         navigate(Paths.projectmanagment);
@@ -80,15 +88,21 @@ const ProjectAdd = () => {
         </div>
         <div className="side-form-group">
         <div style={{paddingRight: 10}}>
-        <Form.Item label="State" name={"state"}
+        <Form.Item  label="State" name={"state"}
             rules={[
                 {
                     required: true,
                     message: 'Select a State',
                 },
             ]}>
-            <Select>
+            <Select onChange={onStateInputChange}>
                 <Select.Option value="">----</Select.Option>
+                {
+                    states.map((data,index)=>(
+                         <Select.Option key={index} value={data.slug}>{data.name}</Select.Option>
+                    ))
+                }
+               
             </Select>
         </Form.Item>
         </div>
@@ -102,6 +116,11 @@ const ProjectAdd = () => {
             ]}>
             <Select>
                 <Select.Option value="">----</Select.Option>
+                {
+                    lgas.map((data,index)=>(
+                         <Select.Option key={index} value={data.name}>{data.name}</Select.Option>
+                    ))
+                }
             </Select>
         </Form.Item>
         </div>
@@ -163,12 +182,12 @@ const ProjectAdd = () => {
         <div className="side-form-group">
           <div style={{paddingRight: 10}}>
                 <Form.Item label="Longitude" name={"longitude"}>
-                <DatePicker />
+                <Input />
                 </Form.Item>
           </div>
           <div style={{paddingLeft: 10}}>
                 <Form.Item label="Latitude" name={"latitude"}>
-                    <DatePicker />
+                    <Input />
                 </Form.Item>
           </div>
         </div>
